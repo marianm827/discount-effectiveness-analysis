@@ -107,3 +107,21 @@
 - Caveat: Because the category is missing, these rows shouldn't be used
   for product or category breakdowns. High-value rows are outliers, so
   use medians instead of means for price or basket-value summaries.
+
+  ### 10. Restricted analysis to weeks 15-101
+### 10. Restricted analysis to weeks 15-101
+- Rows: 170,113 removed (6.7% of 2,552,149); 2,382,036 remain
+- Pattern: Active households rose from under 100 in week 1 to about
+  1,127 by week 15, then stayed near 1,300. Total weekly sales
+  followed the same ramp, while sales per active household stayed
+  roughly constant ($55-65). Week 1 had 5 of 7 days of data and
+  week 102 had 6 (the dataset ends at day 711).
+- Decision: Kept weeks 15 to 101 for the main analysis.
+- Reason: Before week 15, far fewer households appear in the data, so
+  weekly totals from those weeks aren't comparable with later weeks.
+  Week 102 is a partial week (6 of 7 days), so its total is not
+  comparable with full weeks either; it was excluded.
+- Caveat: Dropping weeks 1-14 and week 102 loses about 6.7% of the
+  rows. Week 15 itself (about 1,127 households) is still slightly
+  below the later level of about 1,300, so the start of the range is
+  not perfectly stable. This is a judgment call, not a sharp cutoff.
