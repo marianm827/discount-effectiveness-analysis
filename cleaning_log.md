@@ -108,7 +108,6 @@
   for product or category breakdowns. High-value rows are outliers, so
   use medians instead of means for price or basket-value summaries.
 
-  ### 10. Restricted analysis to weeks 15-101
 ### 10. Restricted analysis to weeks 15-101
 - Rows: 170,113 removed (6.7% of 2,552,149); 2,382,036 remain
 - Pattern: Active households rose from under 100 in week 1 to about
@@ -125,3 +124,23 @@
   rows. Week 15 itself (about 1,127 households) is still slightly
   below the later level of about 1,300, so the start of the range is
   not perfectly stable. This is a judgment call, not a sharp cutoff.
+
+### Coupon analysis design
+- Groups: 1,584 targeted households (434 redeemers, 1,150 non-redeemers)
+- Anchor: start day of each household's first targeted campaign (same
+  rule for both groups, since non-redeemers have no redemption date)
+- Windows: 8, 12 and 16 weeks before vs. after the anchor; median
+  weekly spend per household
+- Eligible households: 1,578 (8 wk), 1,575 (12 wk), 1,552 (16 wk),
+  requiring shopping before the pre-window and a full post-window
+  within the data (day 711)
+- Data: df_clean (all weeks), because the analysis works in days
+- Checks run, at all three windows:
+  - Survivors-only comparison (households with post-window spend > 0)
+  - Matched subset of anchors between days 370 and 420
+  - At the 8-week window, 3.0% of non-redeemers and 0.2% of redeemers
+    had zero spending in the post window
+- Caveats: self-selection into redemption; gap size depends on window
+  (6-14 points); the anchor precedes the actual redemption for many
+  redeemers; the survivors-only filter conditions on the outcome, so
+  it is a diagnostic and not a corrected estimate
